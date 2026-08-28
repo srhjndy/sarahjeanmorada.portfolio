@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Sarah Jean E. Morada | Data & Analytics Portfolio</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+    :root {
+      --bg: #050b14;
+      --panel: rgba(12, 22, 41, 0.85);
+      --border-cyan: rgba(56, 189, 248, 0.25);
+      --border-slate: rgba(51, 65, 85, 0.6);
+      --text: #f8fafc;
+      --accent-cyan: #38bdf8;
+      --accent-indigo: #818cf8;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.06), transparent 32%),
+        radial-gradient(circle at 85% 80%, rgba(99, 102, 241, 0.06), transparent 32%);
+      background-size: 100% 100%;
+      color: var(--text);
+      overflow: hidden;
+    }
+
+    /* Paragraph Justification */
+    p {
+      text-align: justify;
+      text-justify: inter-word;
+    }
+
+    /* =========================================================
+       HORIZONTAL SCROLL TRACK
+    ========================================================= */
+    #horizontal-wrapper {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      height: calc(100vh - 4.25rem);
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-cyan) transparent;
+    }
+
+    .horizontal-slide {
+      flex: 0 0 100vw;
+      width: 100vw;
+      min-height: 100%;
+      scroll-snap-align: start;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    #horizontal-wrapper::-webkit-scrollbar {
+      height: 5px;
+    }
+
+    #horizontal-wrapper::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    #horizontal-wrapper::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.5);
+      border-radius: 999px;
+    }
+
+    /* =========================================================
+       GLASS PANELS
+    ========================================================= */
+    .glass {
+      background: var(--panel);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--border-cyan);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass:hover {
+      border-color: rgba(56, 189, 248, 0.5);
+      box-shadow: 0 20px 50px rgba(56, 189, 248, 0.1);
+    }
+
+    .gradient-text {
+      background: linear-gradient(100deg, #f0f9ff, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* =========================================================
+       HERO PROFILE PHOTO
+    ========================================================= */
+    .profile-photo-wrapper {
+      width: 211px;
+      height: 217px;
+      border-radius: 20px;
+      padding: 3px;
+      background: linear-gradient(145deg, rgba(56, 189, 248, 0.8), rgba(99, 102, 241, 0.3), rgba(14, 165, 233, 0.7));
+      box-shadow: 0 0 35px rgba(56, 189, 248, 0.2);
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .profile-photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      border-radius: 17px;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    /* =========================================================
+       PILLS & TAGS
+    ========================================================= */
+    .skill-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 0.95rem;
+      border-radius: 9999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      color: #bae6fd;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.25s ease;
+    }
+
+    .skill-pill:hover {
+      color: #ffffff;
+      border-color: rgba(56, 189, 248, 0.6);
+      background: rgba(56, 189, 248, 0.12);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.45rem 0.75rem;
+      border-radius: 8px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      color: #7dd3fc;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .interest-card {
+      min-height: 95px;
+      padding: 1.1rem;
+      border-radius: 14px;
+      background: rgba(6, 11, 24, 0.7);
+      border: 1px solid rgba(51, 65, 85, 0.65);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0.45rem;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .interest-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(56, 189, 248, 0.45);
+    }
+
+    .interest-card svg {
+      width: 20px;
+      height: 20px;
+      color: var(--accent-cyan);
+    }
+
+    .interest-card span {
+      color: #e2e8f0;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .experience-item {
+      display: flex;
+      gap: 0.95rem;
+      padding: 1.15rem;
+      border-radius: 14px;
+      background: rgba(6, 11, 24, 0.7);
+      border: 1px solid rgba(51, 65, 85, 0.65);
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+
+    .experience-item:hover {
+      transform: translateY(-2px);
+      border-color: rgba(56, 189, 248, 0.45);
+    }
+
+    .experience-item svg {
+      width: 20px;
+      height: 20px;
+      color: var(--accent-cyan);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .experience-item p {
+      color: #94a3b8;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.15rem;
+      border-radius: 14px;
+      background: rgba(11, 20, 38, 0.85);
+      border: 1px solid rgba(51, 65, 85, 0.7);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .contact-link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(56, 189, 248, 0.5);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .contact-link svg {
+      width: 20px;
+      height: 20px;
+      color: var(--accent-cyan);
+      flex-shrink: 0;
+    }
+
+    .input-label {
+      display: block;
+      margin-bottom: 0.45rem;
+      color: #94a3b8;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      background: rgba(6, 11, 24, 0.85);
+      border: 1px solid rgba(51, 65, 85, 0.8);
+      color: #e2e8f0;
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .input-field:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+    }
+
+    @media (max-width: 640px) {
+      .profile-photo-wrapper {
+        width: 135px;
+        height: 160px;
+      }
+    }
+  </style>
+</head>
+
+<body class="min-h-screen selection:bg-cyan-500 selection:text-slate-950">
+
+  <canvas id="bg-canvas" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
+
+  <header class="fixed top-0 left-0 right-0 h-16 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-xl z-40">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 h-full flex items-center justify-between">
+
+      <button onclick="scrollToSlide('slide-hero')" class="flex items-center gap-3 group text-left">
+        <div class="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-400 font-bold text-base group-hover:scale-105 transition">
+          &Sigma;
+        </div>
+        <div>
+          <span class="font-bold text-sm sm:text-base text-white tracking-tight group-hover:text-cyan-300 transition">
+            Sarah Jean E. Morada
+          </span>
+          <div class="text-[11px] text-cyan-400 uppercase tracking-wider hidden sm:block font-medium">
+            Mathematics &bull; Data &bull; Research
+          </div>
+        </div>
+      </button>
+
+      <nav class="hidden md:flex items-center gap-5 text-sm font-medium text-slate-400">
+        <button onclick="scrollToSlide('slide-about')" class="hover:text-cyan-400 transition">About</button>
+        <button onclick="scrollToSlide('slide-education')" class="hover:text-cyan-400 transition">Education</button>
+        <button onclick="scrollToSlide('slide-experience')" class="hover:text-cyan-400 transition">Experience</button>
+        <button onclick="scrollToSlide('slide-projects')" class="hover:text-cyan-400 transition">Projects</button>
+        <button onclick="scrollToSlide('slide-skills')" class="hover:text-cyan-400 transition">Skills</button>
+        <button onclick="scrollToSlide('slide-certifications')" class="hover:text-cyan-400 transition">Certifications</button>
+        <button onclick="scrollToSlide('slide-contact')" class="hover:text-cyan-400 transition">Contact</button>
+        <a href="Morada_Resume.pdf" download="Sarah_Jean_Morada_Resume.pdf" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-cyan-500/10 border border-cyan-400/40 text-cyan-300 hover:bg-cyan-500 hover:text-slate-950 font-semibold text-xs transition">
+          <i data-lucide="download" class="w-4 h-4"></i> Resume
+        </a>
+      </nav>
+
+      <a href="Morada_Resume.pdf" download="Sarah_Jean_Morada_Resume.pdf" class="md:hidden text-xs font-semibold text-cyan-300">
+        Resume
+      </a>
+
+    </div>
+  </header>
+
+  <main id="horizontal-wrapper" class="relative z-10 w-full pt-16 flex">
+
+    <section id="slide-hero" class="horizontal-slide flex items-center justify-center px-6 py-12">
+      <div class="max-w-5xl w-full mx-auto">
+        <div class="grid lg:grid-cols-[1.25fr_0.75fr] gap-10 items-center">
+
+          <div class="space-y-6">
+            <div>
+              <p class="text-base font-medium text-slate-400 mb-2">Hello, I'm</p>
+              <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.08] text-white">
+                Sarah Jean <span class="gradient-text">Morada.</span>
+              </h1>
+            </div>
+
+            <h2 class="text-xl sm:text-2xl font-semibold text-slate-200">
+              Data & Analytics <span class="text-cyan-400">•</span> Research <span class="text-cyan-400">•</span> Business Intelligence
+            </h2>
+
+            <p class="max-w-2xl text-sm sm:text-base leading-relaxed text-slate-300 font-normal">
+              A BS Mathematics graduate with an interest in data analytics, research, and business intelligence. I enjoy working with data, finding patterns, and turning information into clear and useful outputs. I’m currently looking for an entry-level opportunity where I can apply my skills in Excel, Power BI, statistical analysis, and research, along with foundational knowledge of R, SQL, and Python.
+            </p>
+
+            <div class="flex flex-wrap gap-3">
+              <button onclick="scrollToSlide('slide-projects')" class="px-6 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 text-xs sm:text-sm font-semibold transition flex items-center gap-2 shadow-lg shadow-cyan-500/20">
+                <i data-lucide="folder-open" class="w-4 h-4"></i> View My Work
+              </button>
+              <button onclick="scrollToSlide('slide-about')" class="px-6 py-3 rounded-xl border border-slate-700 bg-slate-900/70 hover:bg-slate-800 text-slate-300 hover:text-white text-xs sm:text-sm font-semibold transition flex items-center gap-2">
+                <i data-lucide="user-round" class="w-4 h-4"></i> About Me
+              </button>
+            </div>
+
+            <div class="flex flex-wrap gap-2.5 pt-1">
+              <span class="skill-pill">Advanced Excel</span>
+              <span class="skill-pill">Power BI</span>
+              <span class="skill-pill">Data Analysis</span>
+              <span class="skill-pill">Statistical Research</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-6 sm:p-7 flex flex-col items-center">
+            <div class="profile-photo-wrapper mb-5">
+              <img
+                src="PROFILE 2.JPG"
+                alt="Sarah Jean E. Morada"
+                onerror="this.src='https://ui-avatars.com/api/?name=Sarah+Jean+Morada&background=0284c7&color=fff&size=500'"
+              />
+            </div>
+
+            <div class="space-y-3 w-full">
+              <div class="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 text-center">
+                <p class="text-xs uppercase tracking-wider text-cyan-400 font-bold mb-0.5">
+                  Currently interested in
+                </p>
+                <p class="text-xs sm:text-sm font-semibold text-slate-200">
+                  Entry-level data & analytics opportunities
+                </p>
+              </div>
+
+              <div class="grid grid-cols-2 gap-2.5">
+                <div class="interest-card text-center items-center">
+                  <i data-lucide="bar-chart-3"></i>
+                  <span class="text-white text-sm">Analytics</span>
+                  <p class="text-xs text-slate-400 text-center">Data & reporting</p>
+                </div>
+                <div class="interest-card text-center items-center">
+                  <i data-lucide="book-open"></i>
+                  <span class="text-white text-sm">Research</span>
+                  <p class="text-xs text-slate-400 text-center">Quantitative analysis</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="slide-about" class="horizontal-slide flex items-center justify-center px-6 sm:px-12 py-12">
+      <div class="max-w-6xl w-full mx-auto space-y-6">
+        <div class="border-b border-slate-800 pb-3 flex items-end justify-between">
+          <div>
+            <p class="text-xs text-cyan-400 font-semibold uppercase tracking-wider">PROFILE</p>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">About Me</h2>
+          </div>
+          <button onclick="scrollToSlide('slide-education')" class="text-sm text-cyan-400 hover:underline flex items-center gap-1 font-medium">
+            Core Courses &rarr;
+          </button>
+        </div>
+
+        <div class="grid lg:grid-cols-[1.15fr_0.85fr] gap-6">
+          <div class="glass rounded-3xl p-6 sm:p-7 space-y-4">
+            <div class="flex items-start gap-4 mb-2">
+              <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="user" class="w-5 h-5 text-cyan-400"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-white text-lg">Mathematics with a practical data perspective</h3>
+                <p class="text-xs sm:text-sm text-slate-400">Southern Luzon State University &bull; Class of 2026</p>
+              </div>
+            </div>
+
+            <div class="space-y-3.5 text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+              <p>
+                I’ve always been drawn to the story behind the numbers. As a BS Mathematics graduate, I developed a strong foundation in analytical thinking, problem-solving, and quantitative analysis, which led me to explore <span class="text-cyan-300 font-semibold">data analytics, research, and business intelligence.</span>
+              </p>
+              <p>
+                My academic and internship experiences have given me practical exposure to working with data, organizing information, preparing reports, and identifying meaningful patterns. With proficiency in Microsoft Excel, Power BI, along with working knowledge in SQL, R, and Python, I enjoy finding patterns, making information easier to understand, and presenting insights in a structured way.
+              </p>
+              <p>
+                As an early-career professional, I am interested in opportunities where I can apply my mathematical and analytical foundation, contribute to day-to-day operations, and continue developing my technical capabilities.
+              </p>
+            </div>
+
+            <div class="grid sm:grid-cols-3 gap-3 pt-4 border-t border-slate-800">
+              <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
+                <p class="text-xs uppercase text-slate-400 font-medium">Degree</p>
+                <p class="text-sm font-semibold text-slate-200 mt-0.5">BS Mathematics</p>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
+                <p class="text-xs uppercase text-slate-400 font-medium">Graduation</p>
+                <p class="text-sm font-semibold text-slate-200 mt-0.5">June 2026</p>
+              </div>
+              <div class="p-3 rounded-xl bg-slate-950/60 border border-slate-800/80">
+                <p class="text-xs uppercase text-slate-400 font-medium">Focus</p>
+                <p class="text-sm font-semibold text-cyan-300 mt-0.5">Data & Analytics</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass rounded-3xl p-6 flex flex-col justify-between space-y-4">
+            <div>
+              <div class="flex items-center gap-2 mb-4">
+                <i data-lucide="target" class="w-5 h-5 text-cyan-400"></i>
+                <h3 class="font-bold text-white text-lg">Areas of Interest</h3>
+              </div>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="interest-card"><i data-lucide="database"></i><span>Data Analytics</span></div>
+                <div class="interest-card"><i data-lucide="search"></i><span>Research</span></div>
+                <div class="interest-card"><i data-lucide="presentation"></i><span>Actuarial</span></div>
+                <div class="interest-card"><i data-lucide="chart-no-axes-combined"></i><span>Business Intelligence</span></div>
+                <div class="interest-card"><i data-lucide="calculator"></i><span>Quantitative Analysis</span></div>
+                <div class="interest-card"><i data-lucide="file-chart-column"></i><span>Planning & Review</span></div>
+              </div>
+            </div>
+
+            <button onclick="scrollToSlide('slide-education')" class="w-full py-3 bg-cyan-500/10 hover:bg-cyan-500 border border-cyan-400/30 text-cyan-300 hover:text-slate-950 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center justify-center gap-1.5">
+              Next: Core Courses <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   <section id="slide-education" class="horizontal-slide overflow-y-auto px-6 sm:px-12 py-10 flex items-start justify-center">
+      <div class="max-w-5xl w-full mx-auto space-y-6 my-auto">
+        
+        <div class="border-b border-slate-800 pb-3 flex items-end justify-between">
+          <div>
+            <p class="text-xs text-cyan-400 font-semibold uppercase tracking-wider">ACADEMIC FOUNDATION</p>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">Education & Core Courses</h2>
+          </div>
+          <button onclick="scrollToSlide('slide-experience')" class="text-sm text-cyan-400 hover:text-cyan-300 hover:underline flex items-center gap-1 font-medium">
+            Experience &rarr;
+          </button>
+        </div>
+
+        <div class="glass rounded-2xl p-5 sm:p-6 border border-cyan-500/25">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div class="space-y-1.5">
+              <span class="inline-flex items-center px-3 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs font-semibold">
+                Bachelor of Science
+              </span>
+              <h3 class="text-xl sm:text-2xl font-bold text-white tracking-tight">
+                Bachelor of Science in Mathematics
+              </h3>
+              <p class="text-xs sm:text-sm text-cyan-400 font-medium">
+                Southern Luzon State University <span class="text-slate-400">&mdash; Main Campus</span>
+              </p>
+              <p class="text-xs text-slate-400">
+                Lucban, Quezon Province, Philippines
+              </p>
+            </div>
+
+            <div class="text-left sm:text-right flex-shrink-0">
+              <div class="text-xl sm:text-2xl font-bold text-cyan-400">
+                2022 &mdash; 2026
+              </div>
+             
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+          <div class="glass rounded-2xl p-4 sm:p-5 flex flex-col justify-start space-y-3 border border-cyan-500/20 hover:border-cyan-500/40">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-md bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold text-xs">
+                &int;
+              </div>
+              <h4 class="text-sm font-bold text-white">
+                Pure & Theoretical Mathematics
+              </h4>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Advanced Calculus</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Abstract Algebra</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Linear Algebra</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Real Analysis</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Topology</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Complex Analysis</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Modern Geometry</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-2xl p-4 sm:p-5 flex flex-col justify-start space-y-3 border border-cyan-500/20 hover:border-cyan-500/40">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-md bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold text-xs">
+                &nabla;
+              </div>
+              <h4 class="text-sm font-bold text-white">
+                Applied Mathematics & Modeling
+              </h4>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Differential Equations</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Numerical Analysis</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Mathematical Modeling</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Operations Research</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Graph Theory</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Fundamental Computing Concepts</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-2xl p-4 sm:p-5 flex flex-col justify-start space-y-3 border border-cyan-500/20 hover:border-cyan-500/40">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-md bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold text-xs">
+                &sigma;
+              </div>
+              <h4 class="text-sm font-bold text-white">
+                Probability & Statistical Analysis
+              </h4>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Probability</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Statistical Theory</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Statistical Modeling</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Multivariate Analysis</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-2xl p-4 sm:p-5 flex flex-col justify-start space-y-3 border border-cyan-500/20 hover:border-cyan-500/40">
+            <div class="flex items-center gap-2">
+              <div class="w-6 h-6 rounded-md bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 font-bold text-xs">
+                &#8984;
+              </div>
+              <h4 class="text-sm font-bold text-white">
+                Actuarial & Financial Mathematics
+              </h4>
+            </div>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Theory of Interest</span>
+              <span class="px-2.5 py-1 rounded-lg bg-slate-950/80 border border-cyan-500/20 text-cyan-200 text-xs font-medium">Actuarial Mathematics</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    
+    </section>
+
+    <section id="slide-experience" class="horizontal-slide flex items-center justify-center px-6 sm:px-12 py-12">
+      <div class="max-w-5xl w-full mx-auto space-y-6">
+        <div class="border-b border-slate-800 pb-3 flex items-end justify-between">
+          <div>
+            <p class="text-xs text-cyan-400 font-semibold uppercase tracking-wider">EXPERIENCE</p>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">Professional Experience</h2>
+          </div>
+          <button onclick="scrollToSlide('slide-projects')" class="text-sm text-cyan-400 hover:underline flex items-center gap-1 font-medium">
+            Projects &rarr;
+          </button>
+        </div>
+
+        <div class="glass rounded-3xl p-6 sm:p-8 space-y-6">
+          <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center flex-shrink-0">
+                <i data-lucide="briefcase-business" class="w-6 h-6 text-cyan-400"></i>
+              </div>
+              <div>
+                <h3 class="text-lg sm:text-xl font-bold text-white">Accounting Intern</h3>
+                <p class="text-sm text-cyan-400 mt-0.5">Extramind F&A Outsourcing Inc.</p>
+              </div>
+            </div>
+            <span class="px-3.5 py-1.5 rounded-full bg-slate-950 border border-slate-800 text-xs font-medium text-cyan-300 w-fit">
+              Internship Experience
+            </span>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-4">
+            <div class="experience-item"><i data-lucide="check-circle-2"></i><p>Assisted in organizing and reconciling financial datasets using Microsoft Excel..</p></div>
+            <div class="experience-item"><i data-lucide="check-circle-2"></i><p>Performed data encoding and entry tasks accurately and efficiently while ensuring information was properly organized and recorded.</p></div>
+            <div class="experience-item"><i data-lucide="check-circle-2"></i><p>Used PivotTables, lookup functions, and dynamic arrays to summarize and organize complex information.</p></div>
+            <div class="experience-item"><i data-lucide="check-circle-2"></i><p>Supported routine accounting and data-related tasks while maintaining accuracy and attention to detail..</p></div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-800">
+            <p class="text-xs uppercase tracking-wider text-slate-400 font-semibold mb-2.5">Skills Applied</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="tag">Microsoft Excel</span>
+              <span class="tag">Data Entry</span>
+              <span class="tag">Data Cleaning</span>
+              <span class="tag">Data Reconciliation</span>
+              <span class="tag">PivotTables</span>
+              <span class="tag">Lookup Functions</span>
+              <span class="tag">Financial Data</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+ <!-- 4. PROJECTS SLIDE (WITH TAB SWITCHER BUTTONS) -->
+    <section id="slide-projects" class="horizontal-slide flex items-center justify-center px-6 sm:px-12 py-10">
+      <div class="max-w-6xl w-full mx-auto space-y-6 my-auto">
+        
+        <!-- Top Header & Subtitle -->
+        <div class="border-b border-slate-800 pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <p class="text-xs text-cyan-400 font-semibold uppercase tracking-wider">PORTFOLIO</p>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-0.5">Projects &amp; Research</h2>
+          </div>
+
+          <!-- Category Switcher Buttons -->
+          <div class="flex items-center gap-2 bg-slate-950/80 p-1.5 rounded-2xl border border-slate-800">
+            <button 
+              id="tab-btn-dashboards" 
+              onclick="switchProjectTab('dashboards')" 
+              class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20">
+              <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboards &amp; Analytics
+            </button>
+            <button 
+              id="tab-btn-thesis" 
+              onclick="switchProjectTab('thesis')" 
+              class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-400 hover:text-white transition flex items-center gap-2">
+              <i data-lucide="book-open" class="w-4 h-4"></i> Thesis Projects
+            </button>
+          </div>
+        </div>
+
+        <!-- 1. Dashboards Tab Container -->
+        <div id="container-dashboards" class="space-y-4">
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider">FEATURED WORK</span>
+              <h3 class="text-lg sm:text-xl font-bold text-white">Interactive Dashboards &amp; Reporting</h3>
+            </div>
+            <span class="text-xs text-slate-500 font-semibold uppercase">Power BI &bull; Advanced Excel</span>
+          </div>
+          <div id="analytics-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+        </div>
+
+        <!-- 2. Thesis Projects Tab Container (Hidden by default) -->
+        <div id="container-thesis" class="space-y-4 hidden">
+          <div class="flex items-center justify-between">
+            <div>
+              <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">ACADEMIC RESEARCH</span>
+              <h3 class="text-lg sm:text-xl font-bold text-white">Thesis &amp; Quantitative Modeling</h3>
+            </div>
+            <span class="text-xs text-slate-500 font-semibold uppercase">Econometrics &bull; Copula Models</span>
+          </div>
+          <div id="thesis-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="slide-skills" class="horizontal-slide flex items-center justify-center px-6 sm:px-12 py-12">
+      <div class="max-w-6xl w-full mx-auto space-y-6">
+        <div class="border-b border-slate-800 pb-3 flex items-end justify-between">
+          <div>
+            <p class="text-xs text-cyan-400 font-semibold uppercase tracking-wider">CAPABILITIES</p>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">Skills & Tools</h2>
+          </div>
+          <button onclick="scrollToSlide('slide-contact')" class="text-sm text-cyan-400 hover:underline flex items-center gap-1 font-medium">
+            Contact &rarr;
+          </button>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="glass rounded-2xl p-5 space-y-3">
+            <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+              <i data-lucide="database" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-bold text-white text-base">Data Analysis</h3>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tag">Data Cleaning</span>
+              <span class="tag">EDA</span>
+              <span class="tag">Visualization</span>
+              <span class="tag">Foundational SQL</span>
+              <span class="tag">Statistical Inference</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-2xl p-5 space-y-3">
+            <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+              <i data-lucide="table-2" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-bold text-white text-base">Microsoft Excel</h3>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tag">Advanced Excel</span>
+              <span class="tag">PivotTables</span>
+              <span class="tag">Lookup Functions</span>
+              <span class="tag">Power Query</span>
+              <span class="tag">VBA</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-2xl p-5 space-y-3">
+            <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+              <i data-lucide="bar-chart-3" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-bold text-white text-base">Power BI</h3>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tag">Dashboard Design</span>
+              <span class="tag">DAX Measures</span>
+              <span class="tag">Power Query</span>
+              <span class="tag">KPI Reporting</span>
+            </div>
+          </div>
+
+          <div class="glass rounded-2xl p-5 space-y-3">
+            <div class="w-11 h-11 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+              <i data-lucide="flask-conical" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-bold text-white text-base">Research & Statistical Analysis</h3>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="tag">R Programming</span>
+              <span class="tag">Time-Series</span>
+              <span class="tag">Multivariate Analysis</span>
+              <span class="tag">Statistical Modeling</span>
+              <span class="tag">Quantitative Research</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass rounded-2xl p-5">
+          <div class="flex flex-col md:flex-row md:items-center gap-5">
+            <div>
+              <p class="text-xs uppercase tracking-wider text-cyan-400 font-bold">
+                Technical Approach
+              </p>
+              <p class="text-sm text-slate-300 mt-1">
+                I combine mathematical and analytical foundations with practical tools to organize data, identify patterns, and communicate results clearly.
+              </p>
+            </div>
+            <div class="flex flex-wrap gap-2 md:ml-auto">
+              <span class="tag">Analytical Thinking</span>
+              <span class="tag">Attention to Detail</span>
+              <span class="tag">Problem Solving</span>
+              <span class="tag">Research</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CERTIFICATIONS & CREDENTIALS SLIDE -->
+    <section id="slide-certifications" class="horizontal-slide flex items-center justify-center px-6 sm:px-12 py-12">
+      <div class="max-w-5xl w-full mx-auto space-y-6 my-auto">
+        
+        <!-- Header -->
+        <div class="border-b border-slate-800 pb-3 flex items-end justify-between">
+          <div>
+            <p class="text-xs text-cyan-400 font-semibold uppercase tracking-wider">CREDENTIALS</p>
+            <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">Certifications &amp; Eligibility</h2>
+          </div>
+          <button onclick="scrollToSlide('slide-contact')" class="text-sm text-cyan-400 hover:underline flex items-center gap-1 font-medium">
+            Contact &rarr;
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          
+          <!-- 1. Civil Service Eligibility -->
+          <div class="glass rounded-2xl p-6 space-y-4 border border-cyan-500/25 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+                  <i data-lucide="shield-check" class="w-6 h-6"></i>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold">
+                  Professional Eligibility
+                </span>
+              </div>
+              
+              <div>
+                <h3 class="text-lg sm:text-xl font-bold text-white leading-snug">
+                  Career Service Professional Eligibility
+                </h3>
+                <p class="text-xs sm:text-sm text-cyan-400 font-medium mt-1">
+                  Civil Service Commission (CSC)
+                </p>
+              </div>
+
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+                Conferred Career Service Professional Eligibility with second-level civil service eligibility in the Philippines.
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-slate-800/80 flex items-center gap-2 text-xs text-slate-400">
+              <i data-lucide="award" class="w-4 h-4 text-cyan-400"></i> Government Verified
+            </div>
+          </div>
+
+          <!-- 2. Data Analytics Essentials -->
+          <div class="glass rounded-2xl p-6 space-y-4 border border-cyan-500/25 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
+                  <i data-lucide="bar-chart-3" class="w-6 h-6"></i>
+                </div>
+                <span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold">
+                  Analytics Certificate
+                </span>
+              </div>
+              
+              <div>
+                <h3 class="text-lg sm:text-xl font-bold text-white leading-snug">
+                  Data Analytics Essentials
+                </h3>
+                <p class="text-xs sm:text-sm text-cyan-400 font-medium mt-1">
+                  Cisco Networking Academy
+                </p>
+              </div>
+
+              <p class="text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
+                Trained in foundational analytics principles, exploratory data analysis (EDA), data cleaning, and data storytelling methodologies.
+              </p>
+            </div>
+
+            <div class="pt-3 border-t border-slate-800/80 flex items-center gap-2 text-xs text-slate-400">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-cyan-400"></i> Verified Credential
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <section id="slide-contact" class="horizontal-slide flex items-center justify-center px-6 py-12">
+      <div class="max-w-5xl w-full mx-auto">
+        <div class="grid lg:grid-cols-[0.8fr_1.2fr] gap-8 items-center">
+          
+          <div class="space-y-5">
+            <div>
+              <p class="text-xs text-cyan-400 font-semibold uppercase tracking-wider">CONTACT</p>
+              <h2 class="text-3xl sm:text-4xl font-bold text-white mt-0.5">Let's Connect.</h2>
+              <p class="text-sm sm:text-base text-slate-300 leading-relaxed mt-2">
+                I'm currently open to entry-level opportunities in data analytics, research, planning, finance, business intelligence, and related roles.
+              </p>
+            </div>
+
+            <div class="space-y-3">
+              <a href="mailto:sarahjeanesguerramorada@gmail.com" class="contact-link">
+                <i data-lucide="mail"></i>
+                <div>
+                  <p class="text-xs uppercase text-slate-400 font-bold">Email</p>
+                  <p class="text-sm text-slate-200">sarahjeanesguerramorada@gmail.com</p>
+                </div>
+              </a>
+
+              <a href="https://www.linkedin.com/in/sarah-jean-morada-a39a5a3a5/" target="_blank" class="contact-link">
+                <i data-lucide="linkedin"></i>
+                <div>
+                  <p class="text-xs uppercase text-slate-400 font-bold">LinkedIn</p>
+                  <p class="text-sm text-slate-200">View LinkedIn Profile</p>
+                </div>
+              </a>
+
+              <a href="Morada_Resume _Analyst Role.pdf" download="Sarah_Jean_Morada_Resume.pdf" class="contact-link">
+                <i data-lucide="file-text"></i>
+                <div>
+                  <p class="text-xs uppercase text-slate-400 font-bold">Resume</p>
+                  <p class="text-sm text-slate-200">Download Resume (PDF) </p>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <form action="https://formspree.io/f/FORM_ID_HERE" method="POST" class="glass rounded-3xl p-6 sm:p-7 space-y-4">
+            <div>
+              <h3 class="font-bold text-white text-lg">Send a Message</h3>
+              <p class="text-xs sm:text-sm text-slate-400">Have an opportunity or want to connect?</p>
+            </div>
+
+            <div class="space-y-3.5">
+              <div>
+                <label class="input-label">NAME</label>
+                <input type="text" name="name" required class="input-field" placeholder="Your name" />
+              </div>
+              <div>
+                <label class="input-label">EMAIL</label>
+                <input type="email" name="_replyto" required class="input-field" placeholder="you@example.com" />
+              </div>
+              <div>
+                <label class="input-label">MESSAGE</label>
+                <textarea name="message" rows="4" required class="input-field resize-none" placeholder="Write your message..."></textarea>
+              </div>
+              <button type="submit" class="w-full py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20">
+                <i data-lucide="send" class="w-4 h-4"></i> Send Message
+              </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="project-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-5xl w-full max-h-[92vh] overflow-y-auto shadow-2xl">
+      <div class="sticky top-0 z-10 bg-slate-900/95 backdrop-blur-xl border-b border-slate-800 p-5 sm:p-6">
+        <div class="flex items-start justify-between gap-5">
+          <div>
+            <span id="modal-category" class="text-xs font-bold uppercase tracking-wider text-cyan-400"></span>
+            <h3 id="modal-title" class="text-xl sm:text-2xl font-bold text-white mt-1 leading-snug"></h3>
+          </div>
+          <button onclick="closeProjectModal()" class="p-2 rounded-xl bg-slate-800/70 hover:bg-slate-800 text-slate-400 hover:text-white transition flex-shrink-0">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="p-5 sm:p-7 space-y-6">
+        <div id="modal-embed-container" class="hidden">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <i data-lucide="monitor-play" class="w-4 h-4 text-cyan-400"></i>
+              <span class="text-xs font-semibold text-slate-200">Interactive Dashboard</span>
+            </div>
+            <span class="text-xs text-slate-400">Live Power BI Canvas</span>
+          </div>
+          <div class="w-full h-[430px] sm:h-[520px] rounded-2xl overflow-hidden border border-slate-800 bg-slate-950">
+            <iframe id="modal-embed-frame" class="w-full h-full border-0" src="" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <i data-lucide="info" class="w-4 h-4 text-cyan-400"></i>
+            <h4 class="text-xs uppercase font-bold text-white">Project Overview</h4>
+          </div>
+          <div id="modal-summary" class="text-sm sm:text-base text-slate-300 leading-relaxed"></div>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <i data-lucide="file-chart-column" class="w-4 h-4 text-cyan-400"></i>
+            <h4 class="text-xs uppercase font-bold text-white">Methodology & Details</h4>
+          </div>
+          <div id="modal-details" class="text-sm sm:text-base text-slate-300 leading-relaxed bg-slate-950/50 border border-slate-800 rounded-2xl p-5"></div>
+        </div>
+
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <i data-lucide="wrench" class="w-4 h-4 text-cyan-400"></i>
+            <h4 class="text-xs uppercase font-bold text-white">Tools & Technologies</h4>
+          </div>
+          <div id="modal-tools" class="flex flex-wrap gap-2"></div>
+        </div>
+
+        <div id="modal-gallery-container" class="hidden">
+          <div class="flex items-center gap-2 mb-3">
+            <i data-lucide="image" class="w-4 h-4 text-cyan-400"></i>
+            <h4 class="text-xs font-bold text-white uppercase">Project Visuals</h4>
+          </div>
+          <div id="modal-gallery" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-800 p-5 flex justify-end">
+        <button onclick="closeProjectModal()" class="px-6 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs sm:text-sm font-semibold transition">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

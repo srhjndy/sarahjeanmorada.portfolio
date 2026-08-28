@@ -1,0 +1,148 @@
+{
+  "thesis": [
+    {
+      "id": "thesis-1",
+      "title": "Volatility Dynamics and Time-Varying Interdependence in the Philippine Stock Market",
+      "category": "Econometrics & Multivariate Time Series",
+      "summary": "This research examined volatility, market risk, and changing relationships between the PSEi and selected banking stocks using 10 years of daily financial data. The study applied time-series and multivariate models to identify volatility patterns, market interactions, and changes in financial interconnectedness during periods of market stress.",
+      "tools": [
+        "R",
+        "ARIMA",
+        "GARCH / EGARCH / GJR-GARCH",
+        "Vector Autoregression (VAR)",
+        "DCC-GARCH"
+      ],
+      "details": "• <b>Objective & Dataset:</b> Evaluated 10 years (Dec 2015 – Dec 2025) of daily logarithmic returns for the PSEi and major banking equities (BDO, BPI, Security Bank) to map systemic risk.Evaluated 10 years (Dec 2015 – Dec 2025) of daily logarithmic returns for the PSEi and selected banking equities (BDO, BPI, Security Bank) to assess market risk.<br><br>• <b>Mean & Variance Pipeline:</b> Applied ARIMA and Student's t-GARCH models to examine return behavior and volatility clustering, including leverage effects in banking stocks..<br><br>• <b>Systemic Interactions:</b>Used VAR modeling, Granger causality, and Impulse Response Functions (IRFs) to examine market interactions and short-term shock transmission.<br><br>• <b>Dynamic Contagion:</b> Applied a DCC(1,1)-GARCH model to examine time-varying correlations and the persistence of market interconnectedness during periods of financial stress.",
+      "images": [
+  {
+    "title": "Impulse Response: PSEi → BDO",
+    "src": "IRFS-BDO.png",
+    "group": "Impulse Response Analysis",
+    "implication": "<b>What does this model imply?</b><br>A shock in the PSEi immediately disrupts BDO on Day 1 due to its high market capitalization, but the effect completely dissipates within 2 to 3 days. This implies high market efficiency and rapid price adjustment."
+  },
+  {
+    "title": "Impulse Response: PSEi → BPI",
+    "src": "IRFS_BPI.png",
+    "group": "Impulse Response Analysis",
+    "implication": "<b>What does this model imply?</b><br>BPI reacts strongly on the first trading day following a market-wide shock, returning quickly to equilibrium within 3 days. This implies that while BPI is sensitive to macro shifts, it does not suffer from prolonged pricing delays."
+
+  },
+  {
+    "title": "Impulse Response: PSEi → Security Bank",
+    "src": "IRFS_SECB.png",
+    "group": "Impulse Response Analysis",
+    "implication": "<b>What does this model imply?</b><br>Security Bank shows an immediate initial reaction that stabilizes rapidly. This confirms that systemic market news is aggressively integrated across the banking sector within a narrow 48-to-72-hour window."
+       
+
+  },
+  {
+    "title": "Dynamic Correlation: PSEi & BDO",
+    "src": "dcc_psei_bdo.png",
+    "group": "Dynamic Correlation Analysis",
+    "implication": "<b>What does this model imply?</b><br>Correlation fluctuates between 0.50 and 0.65 during normal periods but spiked sharply above 0.75 during the 2020 pandemic. This implies severe crisis contagion and proves that assets move closely together during market panic."
+  },
+  {
+    "title": "Dynamic Correlation: PSEi & BPI",
+    "src": "CORRELATION_BPI.png",
+    "group": "Dynamic Correlation Analysis",
+    "implication": "<b>What does this model imply?</b><br>The correlation between the PSEi and BPI rose dramatically during the 2020 market crash. This implies that individual banking fundamentals provide limited shelter against broader systemic sell-offs."
+  },
+  {
+    "title": "Dynamic Correlation: PSEi & Security Bank",
+    "src": "CORRELATION_SECB.png",
+    "group": "Dynamic Correlation Analysis",
+    "implication": "<b>What does this model imply?</b><br>Security Bank has the lowest baseline correlation (~0.30–0.40) in normal periods, but it surged past 0.60 during crisis periods. This implies domestic portfolio diversification breaks down precisely when investors need it most."
+  }
+]
+    },
+    {
+      "id": "thesis-2",
+      "title": "Copula-Based Joint Modeling of Wind Speed and Direction",
+      "category": "Applied Mathematical Modeling & Environmental Statistics",
+      "summary": "This research examined the relationship between wind speed and direction across the First District of Quezon Province using 44 years of daily wind data. The study used statistical distribution modeling and copula-based methods to capture their dependence and seasonal variation, with the goal of assessing wind characteristics and estimating their potential for renewable energy applications.",
+      "tools": [
+        "R",
+        "Copula Theory (Frank, Student's t)",
+        "Mixture of von Mises",
+        "Gamma / Lognormal / Normal",
+        "Kendall's Tau",
+        "NASA POWER"
+      ],
+      "details": "• <b>Scope & Data:</b> Analyzed 44 years (1981–2025) of daily wind observations at 50 meters from NASA POWER across 13 localities in the First District of Quezon Province.<br><br>• <b>Marginal Distribution Modeling:</b> Evaluated Gamma, Lognormal, and Normal distributions for wind speed, alongside mixture of von Mises distributions for circular wind direction data.<br><br>• <b>Dependence Structure:</b> Used Kendall’s tau and seasonal copula models to capture the nonlinear dependence between wind speed and direction.<br><br>• <b>Energy Potential:</b> Used the fitted joint distributions to estimate Mean Wind Power Density (MWPD) and identify wind directions with greater contributions to potential energy generation.",
+      "images": [
+       {
+          "title": "Wind Speed Distribution — Wet Season (Burdeos)",
+          "src": "wind speed.png",
+          "implication": "<b>What does this model imply?</b><br>Wind speeds peak between 4 to 6 m/s. The Lognormal and Gamma distributions align closely with the empirical curve (R² > 0.98), showing that skewed models accurately capture the frequent occurrence of light-to-moderate winds during the wet season."
+        },
+        {
+          "title": "Wind Speed Distribution — Dry Season (Burdeos)",
+          "src": "wind speed 2.png",
+          "implication": "<b>What does this model imply?</b><br>During the dry season, wind speeds shift higher (peaking near 5 to 7 m/s). The Gamma distribution provides the most accurate fit across both the PDF and cumulative probability (CDF), reflecting steadier and stronger winds."
+        },
+        {
+          "title": "Wind Direction Distribution — Wet Season (Burdeos)",
+          "src": "wind direction.png",
+          "implication": "<b>What does this model imply?</b><br>Wind direction exhibits a clear two-peak (bimodal) shape pointing toward the Northeast (~50°) and Southwest (~240°). The 4-component von Mises mixture captures this circular shift caused by the Habagat monsoon."
+        },
+        {
+          "title": "Wind Direction Distribution — Dry Season (Burdeos)",
+          "src": "wind direction 2.png",
+          "implication": "<b>What does this model imply?</b><br>Winds become highly concentrated from a single dominant direction between the East and Northeast (~60°). The model confirms that dry-season winds are far more directional and consistent."
+        },
+        {
+          "title": "Empirical vs. Student's t Copula Joint Density (Burdeos)",
+          "src": "t copula.png",
+          "implication": "<b>What does this model imply?</b><br>The Student's t copula accurately reconstructs the two joint density peaks. The negative rank correlation shows that the highest wind speeds tend to come from non-dominant angles rather than everyday prevailing winds."
+        },
+        {
+          "title": "Empirical vs. Frank Copula Joint Density — Dry Season (Burdeos)",
+          "src": "frank.png",
+          "implication": "<b>What does this model imply?</b><br>The Frank copula models over 94% of the joint variation, accurately capturing the single sharp density peak. This proves that dry-season winds provide a concentrated, predictable flow of kinetic wind energy from the East-Northeast."
+        }
+      ]
+    }
+  ],
+  "analytics": [
+    {
+      "id": "dash-1",
+      "title": "Sales & Revenue Performance Dashboard",
+      "category": "Business Intelligence & KPIs",
+      "summary": "Dynamic Power BI interactive dashboard tracking regional sales growth, profit margins, and inventory metrics.",
+      "tools": [
+        "Power BI",
+        "DAX",
+        "Power Query",
+        "Data Modeling"
+      ],
+      "details": "• <b>Business Context:</b> Built an end-to-end interactive dashboard monitoring enterprise KPIs across regional branches.<br><br>• <b>Data Transformation:</b> Cleaned and normalized transactional datasets using Power Query and established star-schema relational data models.<br><br>• <b>Analytics & Measures:</b> Formulated complex DAX measures for Year-over-Year (YoY) growth, running totals, and automated margin variance tracking.",
+      "embedUrl": "https://app.powerbi.com/reportEmbed?reportId=ba8c40d1-d7dd-4893-ac8e-13ace626d47e&autoAuth=true&embeddedDemo=true",
+      "images": [
+        {
+          "title": "Executive Summary View",
+          "src": "images/powerbi_sales.png"
+        }
+      ]
+    },
+    {
+      "id": "dash-2",
+      "title": "Automated Financial Reporting & Forecast Model",
+      "category": "Financial Analytics & Automation",
+      "summary": "Comprehensive Excel dashboard with automated pivot calculations, dynamic charting, and scenario analysis.",
+      "tools": [
+        "Microsoft Excel",
+        "Advanced Formulas",
+        "Pivot Tables",
+        "VBA"
+      ],
+      "details": "• <b>Workflow:</b> Designed an automated spreadsheet model eliminating manual data aggregation for monthly budget tracking.<br><br>• <b>Features:</b> Leveraged XLOOKUP, dynamic arrays, INDEX/MATCH, and interactive slicers for instant scenario modeling.<br><br>• <b>Visualization:</b> Formatted custom executive KPI cards and conditional variance heatmaps for quick decision-making.",
+      "embedUrl": "",
+      "images": [
+        {
+          "title": "Excel KPI Dashboard",
+          "src": "EXCEL DASHBOARD.png"
+        }
+      ]
+    }
+  ]
+}
