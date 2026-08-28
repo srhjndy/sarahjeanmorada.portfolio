@@ -320,6 +320,7 @@
 
   <main id="horizontal-wrapper" class="relative z-10 w-full pt-16 flex">
 
+    <!-- 1. HERO SLIDE -->
     <section id="slide-hero" class="horizontal-slide flex items-center justify-center px-6 py-12">
       <div class="max-w-5xl w-full mx-auto">
         <div class="grid lg:grid-cols-[1.25fr_0.75fr] gap-10 items-center">
@@ -395,6 +396,7 @@
       </div>
     </section>
 
+    <!-- 2. ABOUT SLIDE -->
     <section id="slide-about" class="horizontal-slide flex items-center justify-center px-6 sm:px-12 py-12">
       <div class="max-w-6xl w-full mx-auto space-y-6">
         <div class="border-b border-slate-800 pb-3 flex items-end justify-between">
@@ -471,7 +473,8 @@
       </div>
     </section>
 
-   <section id="slide-education" class="horizontal-slide overflow-y-auto px-6 sm:px-12 py-10 flex items-start justify-center">
+    <!-- 3. EDUCATION SLIDE -->
+    <section id="slide-education" class="horizontal-slide overflow-y-auto px-6 sm:px-12 py-10 flex items-start justify-center">
       <div class="max-w-5xl w-full mx-auto space-y-6 my-auto">
         
         <div class="border-b border-slate-800 pb-3 flex items-end justify-between">
@@ -505,7 +508,6 @@
               <div class="text-xl sm:text-2xl font-bold text-cyan-400">
                 2022 &mdash; 2026
               </div>
-             
             </div>
           </div>
         </div>
@@ -587,9 +589,8 @@
 
       </div>
     </section>
-    
-    </section>
 
+    <!-- 4. EXPERIENCE SLIDE -->
     <section id="slide-experience" class="horizontal-slide flex items-center justify-center px-6 sm:px-12 py-12">
       <div class="max-w-5xl w-full mx-auto space-y-6">
         <div class="border-b border-slate-800 pb-3 flex items-end justify-between">
@@ -619,10 +620,10 @@
           </div>
 
           <div class="grid md:grid-cols-2 gap-4">
-            <div class="experience-item"><i data-lucide="check-circle-2"></i><p>Assisted in organizing and reconciling financial datasets using Microsoft Excel..</p></div>
+            <div class="experience-item"><i data-lucide="check-circle-2"></i><p>Assisted in organizing and reconciling financial datasets using Microsoft Excel.</p></div>
             <div class="experience-item"><i data-lucide="check-circle-2"></i><p>Performed data encoding and entry tasks accurately and efficiently while ensuring information was properly organized and recorded.</p></div>
             <div class="experience-item"><i data-lucide="check-circle-2"></i><p>Used PivotTables, lookup functions, and dynamic arrays to summarize and organize complex information.</p></div>
-            <div class="experience-item"><i data-lucide="check-circle-2"></i><p>Supported routine accounting and data-related tasks while maintaining accuracy and attention to detail..</p></div>
+            <div class="experience-item"><i data-lucide="check-circle-2"></i><p>Supported routine accounting and data-related tasks while maintaining accuracy and attention to detail.</p></div>
           </div>
 
           <div class="pt-4 border-t border-slate-800">
@@ -641,18 +642,16 @@
       </div>
     </section>
 
- <!-- 4. PROJECTS SLIDE (WITH TAB SWITCHER BUTTONS) -->
+    <!-- 5. PROJECTS SLIDE -->
     <section id="slide-projects" class="horizontal-slide flex items-center justify-center px-6 sm:px-12 py-10">
       <div class="max-w-6xl w-full mx-auto space-y-6 my-auto">
         
-        <!-- Top Header & Subtitle -->
         <div class="border-b border-slate-800 pb-3 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <div>
             <p class="text-xs text-cyan-400 font-semibold uppercase tracking-wider">PORTFOLIO</p>
             <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight mt-0.5">Projects &amp; Research</h2>
           </div>
 
-          <!-- Category Switcher Buttons -->
           <div class="flex items-center gap-2 bg-slate-950/80 p-1.5 rounded-2xl border border-slate-800">
             <button 
               id="tab-btn-dashboards" 
@@ -669,7 +668,6 @@
           </div>
         </div>
 
-        <!-- 1. Dashboards Tab Container -->
         <div id="container-dashboards" class="space-y-4">
           <div class="flex items-center justify-between">
             <div>
@@ -681,7 +679,6 @@
           <div id="analytics-grid" class="grid grid-cols-1 md:grid-cols-2 gap-5"></div>
         </div>
 
-        <!-- 2. Thesis Projects Tab Container (Hidden by default) -->
         <div id="container-thesis" class="space-y-4 hidden">
           <div class="flex items-center justify-between">
             <div>
@@ -696,6 +693,7 @@
       </div>
     </section>
 
+    <!-- 6. SKILLS SLIDE -->
     <section id="slide-skills" class="horizontal-slide flex items-center justify-center px-6 sm:px-12 py-12">
       <div class="max-w-6xl w-full mx-auto space-y-6">
         <div class="border-b border-slate-800 pb-3 flex items-end justify-between">
@@ -703,8 +701,8 @@
             <p class="text-xs text-cyan-400 font-semibold uppercase tracking-wider">CAPABILITIES</p>
             <h2 class="text-2xl sm:text-3xl font-bold text-white mt-0.5">Skills & Tools</h2>
           </div>
-          <button onclick="scrollToSlide('slide-contact')" class="text-sm text-cyan-400 hover:underline flex items-center gap-1 font-medium">
-            Contact &rarr;
+          <button onclick="scrollToSlide('slide-certifications')" class="text-sm text-cyan-400 hover:underline flex items-center gap-1 font-medium">
+            Certifications &rarr;
           </button>
         </div>
 
@@ -786,11 +784,10 @@
       </div>
     </section>
 
-    <!-- 6. CERTIFICATIONS & CREDENTIALS SLIDE -->
+    <!-- 7. CERTIFICATIONS SLIDE -->
     <section id="slide-certifications" class="horizontal-slide flex items-center justify-center px-6 sm:px-12 py-12">
       <div class="max-w-5xl w-full mx-auto space-y-6 my-auto">
         
-        <!-- Header -->
         <div class="border-b border-slate-800 pb-3 flex items-end justify-between">
           <div>
             <p class="text-xs text-cyan-400 font-semibold uppercase tracking-wider">CREDENTIALS</p>
@@ -803,7 +800,6 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
           
-          <!-- 1. Civil Service Eligibility -->
           <div class="glass rounded-2xl p-6 space-y-4 border border-cyan-500/25 flex flex-col justify-between">
             <div class="space-y-3">
               <div class="flex items-center justify-between">
@@ -834,7 +830,6 @@
             </div>
           </div>
 
-          <!-- 2. Data Analytics Essentials -->
           <div class="glass rounded-2xl p-6 space-y-4 border border-cyan-500/25 flex flex-col justify-between">
             <div class="space-y-3">
               <div class="flex items-center justify-between">
@@ -870,6 +865,7 @@
       </div>
     </section>
 
+    <!-- 8. CONTACT SLIDE (FIXED FORM SUBMISSION) -->
     <section id="slide-contact" class="horizontal-slide flex items-center justify-center px-6 py-12">
       <div class="max-w-5xl w-full mx-auto">
         <div class="grid lg:grid-cols-[0.8fr_1.2fr] gap-8 items-center">
@@ -900,7 +896,7 @@
                 </div>
               </a>
 
-              <a href="Morada_Resume _Analyst Role.pdf" download="Sarah_Jean_Morada_Resume.pdf" class="contact-link">
+              <a href="Morada_Resume.pdf" download="Sarah_Jean_Morada_Resume.pdf" class="contact-link">
                 <i data-lucide="file-text"></i>
                 <div>
                   <p class="text-xs uppercase text-slate-400 font-bold">Resume</p>
@@ -910,8 +906,8 @@
             </div>
           </div>
 
-        <form action="https://formsubmit.co/sarahjeanesguerramorada@gmail.com" method="POST">
-            <div>
+          <!-- Glass Form Container with AJAX Handler -->
+          <form id="contact-form" class="glass rounded-3xl p-6 sm:p-7 space-y-4">
             <div>
               <h3 class="font-bold text-white text-lg">Send a Message</h3>
               <p class="text-xs sm:text-sm text-slate-400">Have an opportunity or want to connect?</p>
@@ -920,18 +916,22 @@
             <div class="space-y-3.5">
               <div>
                 <label class="input-label">NAME</label>
-                <input type="text" name="name" required class="input-field" placeholder="Your name" />
+                <input type="text" id="form-name" name="name" required class="input-field" placeholder="Your name" />
               </div>
               <div>
                 <label class="input-label">EMAIL</label>
-                <input type="email" name="_replyto" required class="input-field" placeholder="you@example.com" />
+                <input type="email" id="form-email" name="email" required class="input-field" placeholder="you@example.com" />
               </div>
               <div>
                 <label class="input-label">MESSAGE</label>
-                <textarea name="message" rows="4" required class="input-field resize-none" placeholder="Write your message..."></textarea>
+                <textarea id="form-message" name="message" rows="4" required class="input-field resize-none" placeholder="Write your message..."></textarea>
               </div>
-              <button type="submit" class="w-full py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20">
-                <i data-lucide="send" class="w-4 h-4"></i> Send Message
+
+              <!-- Live Status Alert Box -->
+              <div id="form-status" class="hidden text-xs py-2 px-3 rounded-lg text-center font-medium"></div>
+
+              <button type="submit" id="form-submit-btn" class="w-full py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20">
+                <i data-lucide="send" class="w-4 h-4"></i> <span id="btn-text">Send Message</span>
               </button>
             </div>
           </form>
@@ -942,6 +942,7 @@
 
   </main>
 
+  <!-- PROJECT MODAL -->
   <div id="project-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 hidden items-center justify-center p-4">
     <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-5xl w-full max-h-[92vh] overflow-y-auto shadow-2xl">
       <div class="sticky top-0 z-10 bg-slate-900/95 backdrop-blur-xl border-b border-slate-800 p-5 sm:p-6">
@@ -1010,6 +1011,72 @@
       </div>
     </div>
   </div>
+
+  <!-- CONTACT FORM AJAX SCRIPT -->
+  <script>
+    async function handleContactSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('form-submit-btn');
+      const btnText = document.getElementById('btn-text');
+      const statusDiv = document.getElementById('form-status');
+      const name = document.getElementById('form-name').value.trim();
+      const email = document.getElementById('form-email').value.trim();
+      const message = document.getElementById('form-message').value.trim();
+
+      if (!name || !email || !message) {
+        statusDiv.className = 'block p-3 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-medium text-center';
+        statusDiv.innerText = 'Please complete all fields.';
+        return;
+      }
+
+      btn.disabled = true;
+      btnText.innerText = 'Sending...';
+      statusDiv.className = 'hidden';
+
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/sarahjeanesguerramorada@gmail.com', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            message: message,
+            _subject: 'Portfolio Inquiry from ' + name
+          })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          statusDiv.className = 'block p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-medium text-center';
+          statusDiv.innerText = '✓ Thank you! Your message has been sent successfully.';
+          document.getElementById('contact-form').reset();
+        } else {
+          throw new Error(data.message || 'Submission error');
+        }
+      } catch (err) {
+        statusDiv.className = 'block p-3 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 text-xs font-medium text-center';
+        statusDiv.innerText = '✕ Notice: Please check your email to activate FormSubmit or message directly via email.';
+      } finally {
+        btn.disabled = false;
+        btnText.innerText = 'Send Message';
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('contact-form');
+      if (form) {
+        form.addEventListener('submit', handleContactSubmit);
+      }
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    });
+  </script>
 
   <script src="app.js"></script>
 </body>
